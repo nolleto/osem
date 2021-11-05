@@ -151,7 +151,7 @@ describe Cfp do
           cfp.start_date = Time.zone.now + 1.day
           cfp.end_date = Time.zone.now + 2.day
 
-          expect(cfp.open?).to be_falsey
+          expect(cfp).not_to be_open
         end
       end
 
@@ -160,7 +160,7 @@ describe Cfp do
           cfp.start_date = Time.zone.now - 1.day
           cfp.end_date = Time.zone.now + 1.day
 
-          expect(cfp.open?).to be_truthy
+          expect(cfp).to be_open
         end
       end
 
@@ -169,7 +169,7 @@ describe Cfp do
           cfp.start_date = Time.zone.now - 2.day
           cfp.end_date = Time.zone.now - 1.day
 
-          expect(cfp.open?).to be_falsey
+          expect(cfp).not_to be_open
         end
       end
     end
@@ -191,7 +191,7 @@ describe Cfp do
           cfp.start_date = Time.zone.now
           cfp.end_date = Time.zone.now + 1.day
 
-          expect(cfp.open?).to be_falsey
+          expect(cfp).not_to be_open
         end
       end
 
@@ -200,7 +200,7 @@ describe Cfp do
           cfp.start_date = Time.zone.now - 2.day
           cfp.end_date = Time.zone.now - 1.day
 
-          expect(cfp.open?).to be_truthy
+          expect(cfp).to be_open
         end
       end
 
@@ -209,7 +209,7 @@ describe Cfp do
           cfp.start_date = Time.zone.now - 3.day
           cfp.end_date = Time.zone.now - 2.day
 
-          expect(cfp.open?).to be_falsey
+          expect(cfp).not_to be_open
         end
       end
     end
@@ -231,7 +231,7 @@ describe Cfp do
           cfp.start_date = Time.zone.now + 2.day
           cfp.end_date = Time.zone.now + 3.day
 
-          expect(cfp.open?).to be_falsey
+          expect(cfp).not_to be_open
         end
       end
 
@@ -240,16 +240,16 @@ describe Cfp do
           cfp.start_date = Time.zone.now + 1.day
           cfp.end_date = Time.zone.now + 2.day
 
-          expect(cfp.open?).to be_truthy
+          expect(cfp).to be_open
+        end
       end
-    end
 
       context 'when the current day is after call for papers days' do
         it 'returns false' do
           cfp.start_date = Time.zone.now - 1.day
           cfp.end_date = Time.zone.now
 
-          expect(cfp.open?).to be_falsey
+          expect(cfp).not_to be_open
         end
       end
     end
