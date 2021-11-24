@@ -131,8 +131,13 @@ describe Cfp do
   end
 
   describe '#open?' do
-    let(:timezone_minus11) { 'Pacific/Pago_Pago' }
+    let!(:server_timezone) { Time.zone }
     let(:timezone_plus14) { 'Pacific/Apia' }
+    let(:timezone_plus14) { 'Pacific/Apia' }
+
+    after do
+      Time.zone = server_timezone
+    end
 
     context 'when is the same timezone between the conference and server' do
       before :each do
